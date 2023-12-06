@@ -1,0 +1,21 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Sun, 10 Oct 2021 02:06:22 +0800
+Subject: Skip unsupported test for buildd
+
+Forwarded: not-needed
+---
+ fs/copy_unix_test.go | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/fs/copy_unix_test.go b/fs/copy_unix_test.go
+index 8fb0590..5bd11fe 100644
+--- a/fs/copy_unix_test.go
++++ b/fs/copy_unix_test.go
+@@ -44,6 +44,7 @@ func assertXAttr(t *testing.T, dir, xattr, xval string, xerr error) {
+ }
+ 
+ func TestCopyDirWithXAttrExcludes(t *testing.T) {
++	t.Skip("operation not supported on Debian buildd")
+ 	src := t.TempDir()
+ 	if err := fstest.Apply(
+ 		fstest.SetXAttr(".", "user.test-1", "one"),
